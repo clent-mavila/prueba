@@ -1,61 +1,57 @@
-<script lang="ts">
-import { defineComponent, ref } from "vue";
-defineComponent({
-    props: {
-        sectionTitle: {
-            type: String,
-            required: true,
-        },
-
-        sectionTitleLargo: {
-            type: String,
-            required: false,
-        },
-        extra: {
-            type: String,
-            required: false,
-        },
-        section: {
-            type: String,
-            required: true,
-        },
-        favoritos: {
-            type: String,
-            required: false,
-        },
-        guardados: {
-            type: String,
-            required: false,
-        },
-        cambiar_clave: {
-            type: String,
-            required: false,
-        },
+<script setup>
+import { ref } from "vue";
+defineProps({
+    sectionTitle: {
+        type: String,
+        required: true,
     },
-    setup() {
-        const cardsFavoritos = ref(null);
-        return {
-            cardsFavoritos,
-            scrollToCards() {
-                alert("scrollToCards");
-                // Obtener el elemento referenciado
-                const el = this.cardsFavoritos.value;
-                // Verificar que el elemento existe
-                if (el) {
-                    // Desplazar el elemento a la vista
-                    el.scrollIntoView({ behavior: "smooth" });
-                }
-            },
-        };
+
+    sectionTitleLargo: {
+        type: String,
+        required: false,
+    },
+    extra: {
+        type: String,
+        required: false,
+    },
+    section: {
+        type: String,
+        required: true,
+    },
+    favoritos: {
+        type: String,
+        required: false,
+    },
+    guardados: {
+        type: String,
+        required: false,
+    },
+    cambiar_clave: {
+        type: String,
+        required: false,
     },
 });
+
+const cardsFavoritos = ref(null);
+
+const scrollToCards = () => {
+    // Obtener el elemento referenciado
+    const el = cardsFavoritos.value;
+    // Verificar que el elemento existe
+    if (el) {
+        // Desplazar el elemento a la vista
+        el.scrollIntoView({ behavior: "smooth" });
+    }
+};
 </script>
 
 <template>
     <template v-if="section === 'MI-CUENTA_PRINCIPAL'">
         <h1 class="section-title">{{ sectionTitle }}</h1>
         <div class="d-flex align-items-center justify-content-center">
-            <a href="" class="botones_cuenta">{{ favoritos }}</a>
+            <a href="" class="botones_cuenta" @click.prevent="scrollToCards">{{
+                favoritos
+            }}</a>
             <a href="" class="botones_cuenta">{{ guardados }}</a>
             <a href="" class="botones_cuenta">{{ cambiar_clave }}</a>
         </div>
