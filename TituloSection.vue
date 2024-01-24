@@ -1,36 +1,56 @@
-<script setup>
-defineProps({
-    sectionTitle: {
-        type: String,
-        required: true,
-    },
+<script lang="ts">
+import { defineComponent, ref } from "vue";
+defineComponent({
+    props: {
+        sectionTitle: {
+            type: String,
+            required: true,
+        },
 
-    sectionTitleLargo: {
-        type: String,
-        required: false,
+        sectionTitleLargo: {
+            type: String,
+            required: false,
+        },
+        extra: {
+            type: String,
+            required: false,
+        },
+        section: {
+            type: String,
+            required: true,
+        },
+        favoritos: {
+            type: String,
+            required: false,
+        },
+        guardados: {
+            type: String,
+            required: false,
+        },
+        cambiar_clave: {
+            type: String,
+            required: false,
+        },
     },
-    extra: {
-        type: String,
-        required: false,
-    },
-    section: {
-        type: String,
-        required: true,
-    },
-    favoritos: {
-        type: String,
-        required: false,
-    },
-    guardados: {
-        type: String,
-        required: false,
-    },
-    cambiar_clave: {
-        type: String,
-        required: false,
+    setup() {
+        const cardsFavoritos = ref(null);
+        return {
+            cardsFavoritos,
+            scrollToCards() {
+                alert("scrollToCards");
+                // Obtener el elemento referenciado
+                const el = this.cardsFavoritos.value;
+                // Verificar que el elemento existe
+                if (el) {
+                    // Desplazar el elemento a la vista
+                    el.scrollIntoView({ behavior: "smooth" });
+                }
+            },
+        };
     },
 });
 </script>
+
 <template>
     <template v-if="section === 'MI-CUENTA_PRINCIPAL'">
         <h1 class="section-title">{{ sectionTitle }}</h1>
