@@ -1,5 +1,4 @@
 <script setup>
-import { ref } from "vue";
 defineProps({
     sectionTitle: {
         type: String,
@@ -32,11 +31,12 @@ defineProps({
     },
 });
 
-const cardsFavoritos = ref(null);
-
 const scrollToCards = () => {
+    alert(cardsFavoritos);
     // Obtener el elemento referenciado
-    const el = cardsFavoritos.value;
+
+    const el = defineExpose({ cardsFavoritos });
+
     // Verificar que el elemento existe
     if (el) {
         // Desplazar el elemento a la vista
