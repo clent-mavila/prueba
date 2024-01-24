@@ -1,4 +1,5 @@
 <script setup>
+import { ref, onMounted } from "vue";
 import Card4Favoritos from "../Cards/Card4Favoritos.vue";
 import Card6Col from "@/Components/Cards/Card6Col.vue";
 import Card4Col from "@/Components/Cards/Card4Col.vue";
@@ -7,7 +8,6 @@ import Card6ColImagen from "@/Components/Cards/Card6ColImagen.vue";
 import Card4ColFecha from "@/Components/Cards/Card4ColFecha.vue";
 import Card3PubCol from "@/Components/Cards/Card3PubCol.vue";
 import Card_mi_cuenta from "@/Components/Cards/Card-mi-cuenta.vue";
-import { ref, onMounted } from "vue";
 
 const props = defineProps({
     section: {
@@ -41,9 +41,9 @@ const props = defineProps({
     },
 });
 
-const cardsFavoritos = ref(null);
+const cardsFavoritosRef = ref(null);
 onMounted(() => {
-    cardsFavoritos.value.scrollToCards();
+    cardsFavoritosRef.value.scrollToCards(cardsFavoritosRef.value);
 });
 </script>
 <template>
@@ -117,7 +117,7 @@ onMounted(() => {
                 </div>
                 <div
                     id="cards-favoritos"
-                    ref="cardsFavoritos"
+                    ref="cardsFavoritosRef"
                     class="mr-3 ml-3 d-flex flex-row align-items-center justify-content-between"
                 >
                     <Card4Col
