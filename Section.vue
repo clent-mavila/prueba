@@ -7,8 +7,7 @@ import Card6ColImagen from "@/Components/Cards/Card6ColImagen.vue";
 import Card4ColFecha from "@/Components/Cards/Card4ColFecha.vue";
 import Card3PubCol from "@/Components/Cards/Card3PubCol.vue";
 import Card_mi_cuenta from "@/Components/Cards/Card-mi-cuenta.vue";
-import { ref } from "vue";
-const cardsFavoritos = ref(null);
+import { ref, onMounted } from "vue";
 
 const props = defineProps({
     section: {
@@ -40,6 +39,11 @@ const props = defineProps({
         type: Boolean,
         default: false,
     },
+});
+
+const cardsFavoritos = ref(null);
+onMounted(() => {
+    cardsFavoritos.value.scrollToCards();
 });
 </script>
 <template>
