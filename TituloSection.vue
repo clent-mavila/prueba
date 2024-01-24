@@ -32,26 +32,29 @@ defineProps({
 });
 
 const scrollToCards = () => {
-    alert(cardsFavoritos);
-    // Obtener el elemento referenciado
-
-    const el = defineExpose({ cardsFavoritos });
-
     // Verificar que el elemento existe
-    if (el) {
+    if (scrollToCards) {
         // Desplazar el elemento a la vista
         el.scrollIntoView({ behavior: "smooth" });
     }
 };
+defineExpose({ scrollToCards });
 </script>
 
 <template>
     <template v-if="section === 'MI-CUENTA_PRINCIPAL'">
         <h1 class="section-title">{{ sectionTitle }}</h1>
         <div class="d-flex align-items-center justify-content-center">
-            <a href="" class="botones_cuenta" @click.prevent="scrollToCards">{{
-                favoritos
-            }}</a>
+            <a
+                href=""
+                class="botones_cuenta"
+                @click.prevent="
+                    cardsFavoritosRef.value.scrollToCards(
+                        cardsFavoritosRef.value
+                    )
+                "
+                >{{ favoritos }}</a
+            >
             <a href="" class="botones_cuenta">{{ guardados }}</a>
             <a href="" class="botones_cuenta">{{ cambiar_clave }}</a>
         </div>
