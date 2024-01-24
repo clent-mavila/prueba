@@ -7,6 +7,8 @@ import Card6ColImagen from "@/Components/Cards/Card6ColImagen.vue";
 import Card4ColFecha from "@/Components/Cards/Card4ColFecha.vue";
 import Card3PubCol from "@/Components/Cards/Card3PubCol.vue";
 import Card_mi_cuenta from "@/Components/Cards/Card-mi-cuenta.vue";
+import { ref } from "vue";
+const cardsFavoritos = ref(null);
 
 const props = defineProps({
     section: {
@@ -110,6 +112,8 @@ const props = defineProps({
                     />
                 </div>
                 <div
+                    id="cards-favoritos"
+                    ref="cardsFavoritos"
                     class="mr-3 ml-3 d-flex flex-row align-items-center justify-content-between"
                 >
                     <Card4Col
